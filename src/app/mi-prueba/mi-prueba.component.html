@@ -1,0 +1,271 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <h1 class="display-4">Hello, world!</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <hr class="my-4">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Leer más...</a>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title">Ingreso datos de la Persona</h4>
+                    </div>
+                    <div class="card-body">
+                        <form class="example-form">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <input [formControl]="nombreControl" required matInput placeholder="Nombre">
+                                        <mat-error>Ingrese Nombre</mat-error>
+                                    </mat-form-field>
+
+
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <input [formControl]="apellidoPaternoControl" required matInput placeholder="Apellido Paterno">
+                                        <mat-error>Ingrese Apellido</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <input [formControl]="apellidoMaternoControl" required matInput placeholder="Apellido Materno">
+                                        <mat-error>Ingrese Apellido</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <input [errorStateMatcher]="matcher" [formControl]="rutControl" required matInput placeholder="Rut" appearance="standard">
+                                        <mat-error>Ingrese Rut</mat-error>
+                                    </mat-form-field>
+                                    <mat-error>
+                                    </mat-error>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <mat-label>Grado</mat-label>
+                                        <mat-select [formControl]="gradoControl" required appearance="standard">
+                                            <mat-option>--</mat-option>
+                                            <mat-option *ngFor="let grado of grados" [value]="grado">
+                                                {{grado.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="gradoControl.hasError('required')">Escoja un grado</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <mat-label>Correo</mat-label>
+                                        <input required matInput [formControl]="emailControl" [errorStateMatcher]="matcher" placeholder="correo@correo.com">
+                                        <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
+                                            Ingrese dirección de correo válido
+                                        </mat-error>
+                                        <mat-error *ngIf="emailControl.hasError('required')">
+                                            Correo es <strong>obligatorio</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <mat-label>Gerencia</mat-label>
+                                        <mat-select [formControl]="gerenciaControl" required appearance="standard">
+                                            <mat-option>--</mat-option>
+                                            <mat-option *ngFor="let gerencia of gerencias" [value]="gerencia">
+                                                {{gerencia.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="gerenciaControl.hasError('required')">Escoja una gerencia</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <input [formControl]="puestoControl" required appearance="standard" required matInput placeholder="Puesto">
+                                        <mat-error>Ingrese Puesto</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <mat-label>Fecha ingreso</mat-label>
+                                        <input required matInput [matDatepicker]="picker1" [formControl]="fechaControl">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="card-header card-header-info mt-4 mb-3">
+                                <h4 class="card-title">Equipos a cargo</h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Gerencia []">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Puesto">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Fecha Adquisición [fecha]">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <button mat-raised-button type="submit" class="btn btn-primary pull-right" [disabled]="">Añadir</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Simple Table</h4>
+                        <p class="card-category"> Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Country
+                                    </th>
+                                    <th>
+                                        City
+                                    </th>
+                                    <th>
+                                        Salary
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>
+                                            Dakota Rice
+                                        </td>
+                                        <td>
+                                            Niger
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td class="text-primary">
+                                            $36,738
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            2
+                                        </td>
+                                        <td>
+                                            Minerva Hooper
+                                        </td>
+                                        <td>
+                                            Curaçao
+                                        </td>
+                                        <td>
+                                            Sinaai-Waas
+                                        </td>
+                                        <td class="text-primary">
+                                            $23,789
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            3
+                                        </td>
+                                        <td>
+                                            Sage Rodriguez
+                                        </td>
+                                        <td>
+                                            Netherlands
+                                        </td>
+                                        <td>
+                                            Baileux
+                                        </td>
+                                        <td class="text-primary">
+                                            $56,142
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            4
+                                        </td>
+                                        <td>
+                                            Philip Chaney
+                                        </td>
+                                        <td>
+                                            Korea, South
+                                        </td>
+                                        <td>
+                                            Overland Park
+                                        </td>
+                                        <td class="text-primary">
+                                            $38,735
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            5
+                                        </td>
+                                        <td>
+                                            Doris Greene
+                                        </td>
+                                        <td>
+                                            Malawi
+                                        </td>
+                                        <td>
+                                            Feldkirchen in Kärnten
+                                        </td>
+                                        <td class="text-primary">
+                                            $63,542
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            6
+                                        </td>
+                                        <td>
+                                            Mason Porter
+                                        </td>
+                                        <td>
+                                            Chile
+                                        </td>
+                                        <td>
+                                            Gloucester
+                                        </td>
+                                        <td class="text-primary">
+                                            $78,615
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
